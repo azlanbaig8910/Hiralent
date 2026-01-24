@@ -304,9 +304,7 @@ talenta/
 
 ## Contact
 
-For questions or support, contact:  
-**Huzaifa Iqbal**  
-Email: [your-email@example.com]
+
 
 ---
 
@@ -315,5 +313,6 @@ Email: [your-email@example.com]
 - Node.js (v18+) and npm must be installed.
 - Update dependencies regularly for security and new features.
 - For any issues, check logs in the terminal or browser console.
-- This README is designed for both developer onboarding and AI model training—every detail is included for maximum#   H i r a l e n t  
+- This README is designed for both developer onboarding and AI model training—every detail is included for maximum#   H i r a l e n t 
+ 
  
