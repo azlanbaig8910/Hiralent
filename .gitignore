@@ -1,0 +1,83 @@
+# node_modules/
+# .env
+
+# /src/generated/prisma
+# /config/firebase-adminsdk.json
+# <<<<<<< HEAD
+# <<<<<<< HEAD
+# <<<<<<< HEAD
+# distbackend/uploads/
+# backend/uploads/
+# *.zip
+# node_modules_old/
+# =======
+# dist
+# >>>>>>> main
+# =======
+# distbackend/uploads/
+# backend/uploads/
+# >>>>>>> f5158f792436409fab0da46af64b7c212cbeadbe
+# =======
+# dist
+# >>>>>>> e650d1396141ae61a367693736c380a91be948dc
+# venv/
+
+# assessment-ai-service/venv/
+
+# ========================
+# Node.js
+# ========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ========================
+# Environment variables
+# ========================
+.env
+.env.*
+
+# ========================
+# Build outputs
+# ========================
+dist/
+build/
+
+# ========================
+# Backend uploads / runtime
+# ========================
+backend/uploads/
+distbackend/uploads/
+
+# ========================
+# Prisma
+# ========================
+/src/generated/prisma
+backend/prisma/dev.db
+
+# ========================
+# Python
+# ========================
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+
+assessment-ai-service/venv/
+
+# ========================
+# Editor / OS
+# ========================
+.vscode/
+*.lnk
+.DS_Store
+
+# ========================
+# Temp / generated
+# ========================
+*.zip
+temp_processing_*
+*.pdf
