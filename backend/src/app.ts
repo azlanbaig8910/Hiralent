@@ -20,7 +20,7 @@ app.use(cors({
       callback(new Error('Not allowed by CORS'));
     }
   },
-  credentials: true 
+  credentials: true
 }));
 
 app.use(express.json()); // parse JSON body
@@ -84,4 +84,12 @@ app.get('/', (req: Request, res: Response) => {
   res.send("Backend running successfully");
 });
 
-  export default app;
+app.get('/health', (_req: Request, res: Response) => {
+  res.status(200).json({
+    status: 'ok',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+  });
+});
+
+export default app;

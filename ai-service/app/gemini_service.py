@@ -12,7 +12,7 @@ class GeminiAIService:
         # Essayer d'importer Google AI
         try:
             import google.generativeai as genai
-            api_key = os.getenv("GEMINI_API_KEY", "AIzaSyB6EuKO764m3RDWu7SG7ZrZYpZlbI6vN1k")
+            api_key = os.getenv("GEMINI_API_KEY", "")
             
             if api_key:
                 genai.configure(api_key=api_key)
