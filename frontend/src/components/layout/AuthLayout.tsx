@@ -34,7 +34,7 @@ interface Step {
 }
 
 interface AuthLayoutProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   backgroundImage: string;
   testimonials: Testimonial[];
   title?: string;

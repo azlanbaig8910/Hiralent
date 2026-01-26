@@ -6,6 +6,11 @@ import { Download, MapPin, Globe } from "lucide-react";
 import { HeroProps, ParsedLanguage } from "@/src/types/profile";
 
 export default function Hero({ profile }: HeroProps) {
+
+    if (!profile) {
+        return null; // or a skeleton / placeholder
+    }
+
     // Parse languages if available
     const languages: ParsedLanguage[] = profile.languages ? JSON.parse(profile.languages) : [];
 

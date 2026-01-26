@@ -6,10 +6,17 @@ import { motion } from 'framer-motion';
 import { CheckCircle, Clock, Sparkles } from 'lucide-react';
 
 export default function AssessmentCompletePage() {
-  const params = useParams();
+  // const params = useParams();
   const router = useRouter();
-  const assessmentId = params.assessmentId as string;
-  
+  // const assessmentId = params.assessmentId as string;
+  const params = useParams<{ assessmentId: string }>();
+
+  if (!params?.assessmentId) {
+    return <div>Loading assessment...</div>;
+  }
+
+  const assessmentId = params.assessmentId;
+
   const [timeRemaining, setTimeRemaining] = useState(60); // 60 seconds
   const [progress, setProgress] = useState(0);
 
@@ -107,20 +114,20 @@ export default function AssessmentCompletePage() {
             </div>
 
             <div className="space-y-3 text-sm text-gray-600 text-left max-w-md mx-auto">
-              <ProcessingStep 
-                text="Evaluating your answers with AI" 
+              <ProcessingStep
+                text="Evaluating your answers with AI"
                 delay={0.6}
               />
-              <ProcessingStep 
-                text="Calculating skill level and performance metrics" 
+              <ProcessingStep
+                text="Calculating skill level and performance metrics"
                 delay={0.8}
               />
-              <ProcessingStep 
-                text="Generating personalized recommendations" 
+              <ProcessingStep
+                text="Generating personalized recommendations"
                 delay={1.0}
               />
-              <ProcessingStep 
-                text="Creating detailed performance report" 
+              <ProcessingStep
+                text="Creating detailed performance report"
                 delay={1.2}
               />
             </div>

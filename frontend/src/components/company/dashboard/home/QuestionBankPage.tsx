@@ -81,9 +81,8 @@ const StatusSelect: React.FC<{
     <select
       value={value}
       onChange={(e) => onChange(e.target.value as any)}
-      className={`${
-        compact ? "px-2 py-1 text-xs rounded-md" : "px-3 py-2 rounded-lg text-sm"
-      } border border-gray-200 bg-white font-medium text-gray-700 focus:ring-2 focus:ring-[#1B73E8] transition-all`}
+      className={`${compact ? "px-2 py-1 text-xs rounded-md" : "px-3 py-2 rounded-lg text-sm"
+        } border border-gray-200 bg-white font-medium text-gray-700 focus:ring-2 focus:ring-[#1B73E8] transition-all`}
       title="Change status"
     >
       <option value="pending_review">Pending</option>
@@ -260,11 +259,10 @@ const AiGenerateModal: React.FC<{
           <button
             disabled={!canSubmit || generating}
             onClick={() => onGenerate({ topic, difficulty, type, tags, testCaseCount })}
-            className={`px-5 py-2 rounded-xl font-semibold text-white transition-all ${
-              generating || !canSubmit
+            className={`px-5 py-2 rounded-xl font-semibold text-white transition-all ${generating || !canSubmit
                 ? "bg-[#1B73E8]/60 cursor-not-allowed"
                 : "bg-[#1B73E8] hover:bg-[#1557B0] shadow"
-            }`}
+              }`}
           >
             {generating ? "Generating…" : "Generate"}
           </button>
@@ -410,11 +408,10 @@ const AiBatchModal: React.FC<{
           <button
             disabled={!canSubmit || generating}
             onClick={() => onGenerate({ topics, difficulty, countPerTopic })}
-            className={`px-5 py-2 rounded-xl font-semibold text-white transition-all ${
-              generating || !canSubmit
+            className={`px-5 py-2 rounded-xl font-semibold text-white transition-all ${generating || !canSubmit
                 ? "bg-[#1B73E8]/60 cursor-not-allowed"
                 : "bg-[#1B73E8] hover:bg-[#1557B0] shadow"
-            }`}
+              }`}
           >
             {generating ? "Generating…" : "Generate Batch"}
           </button>
@@ -516,11 +513,10 @@ const Pagination: React.FC<{
             ) : (
               <button
                 onClick={() => onPageChange(page as number)}
-                className={`px-4 py-2 rounded-lg font-semibold transition-all ${
-                  currentPage === page
+                className={`px-4 py-2 rounded-lg font-semibold transition-all ${currentPage === page
                     ? "bg-gradient-to-r from-[#1B73E8] to-[#1557B0] text-white shadow-md shadow-blue-200"
                     : "border border-gray-200 bg-white hover:bg-blue-50 text-gray-700"
-                }`}
+                  }`}
               >
                 {page}
               </button>
@@ -578,14 +574,14 @@ const UrlScraperModal: React.FC<{
   }, [open]);
 
   const handleAddSampleUrls = () => {
-    const samples = platform === 'stackoverflow' 
+    const samples = platform === 'stackoverflow'
       ? `https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python
 https://stackoverflow.com/questions/419163/what-does-if-name-main-do
 https://stackoverflow.com/questions/394809/does-python-have-a-ternary-conditional-operator`
       : `https://leetcode.com/problems/two-sum/
 https://leetcode.com/problems/add-two-numbers/
 https://leetcode.com/problems/longest-substring-without-repeating-characters/`;
-    
+
     setUrlsInput(samples);
   };
 
@@ -636,11 +632,10 @@ https://leetcode.com/problems/longest-substring-without-repeating-characters/`;
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setPlatform('stackoverflow')}
-                className={`flex-1 px-4 py-3 rounded-xl border-2 font-semibold text-sm transition-all ${
-                  platform === 'stackoverflow'
+                className={`flex-1 px-4 py-3 rounded-xl border-2 font-semibold text-sm transition-all ${platform === 'stackoverflow'
                     ? 'border-orange-500 bg-orange-50 text-orange-700'
                     : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-50'
-                }`}
+                  }`}
               >
                 <div className="flex items-center justify-center gap-2">
                   <Code2 className="w-4 h-4" />
@@ -649,11 +644,10 @@ https://leetcode.com/problems/longest-substring-without-repeating-characters/`;
               </button>
               <button
                 onClick={() => setPlatform('leetcode')}
-                className={`flex-1 px-4 py-3 rounded-xl border-2 font-semibold text-sm transition-all ${
-                  platform === 'leetcode'
+                className={`flex-1 px-4 py-3 rounded-xl border-2 font-semibold text-sm transition-all ${platform === 'leetcode'
                     ? 'border-amber-500 bg-amber-50 text-amber-700'
                     : 'border-gray-200 bg-white text-gray-600 hover:bg-gray-50'
-                }`}
+                  }`}
               >
                 <div className="flex items-center justify-center gap-2">
                   <Code2 className="w-4 h-4" />
@@ -684,7 +678,7 @@ https://leetcode.com/problems/longest-substring-without-repeating-characters/`;
               rows={8}
               className="w-full rounded-xl border-2 border-gray-200 bg-white px-4 py-3 text-sm font-mono outline-none focus:ring-2 focus:ring-purple-500 transition-all"
             />
-            
+
             {urls.length > 0 && (
               <div className="mt-2 p-3 bg-green-50 rounded-lg border border-green-200">
                 <div className="flex items-center gap-2 text-sm">
@@ -710,8 +704,8 @@ https://leetcode.com/problems/longest-substring-without-repeating-characters/`;
             <div className="flex items-start gap-2">
               <ExternalLink className="w-4 h-4 text-blue-600 mt-0.5 flex-shrink-0" />
               <div className="text-[11px] text-blue-900 leading-relaxed">
-                <span className="font-bold">How it works:</span> The system will visit each URL, 
-                extract the question content, and save it to your database. Make sure the URLs 
+                <span className="font-bold">How it works:</span> The system will visit each URL,
+                extract the question content, and save it to your database. Make sure the URLs
                 are publicly accessible.
               </div>
             </div>
@@ -729,11 +723,10 @@ https://leetcode.com/problems/longest-substring-without-repeating-characters/`;
           <button
             disabled={!canSubmit || scraping}
             onClick={() => onScrape(urls, platform)}
-            className={`px-5 py-2 rounded-xl font-semibold text-white transition-all ${
-              scraping || !canSubmit
+            className={`px-5 py-2 rounded-xl font-semibold text-white transition-all ${scraping || !canSubmit
                 ? "bg-purple-400 cursor-not-allowed"
                 : "bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 shadow"
-            }`}
+              }`}
           >
             {scraping ? (
               <span className="inline-flex items-center gap-2">
@@ -824,38 +817,38 @@ const QuestionBankPage: React.FC = () => {
     setCurrentUserId(user?.user_id ?? null);
   }, [user]);
 
-const loadQuestions = async () => {
-  setLoading(true);
-  try {
-    // ✅ Demander jusqu'à 1000 questions
-    const response = await fetch("http://localhost:5000/api/questions?limit=1000&page=1", { 
-      headers: authHeaders() 
-    });
-    
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+  const loadQuestions = async () => {
+    setLoading(true);
+    try {
+      // ✅ Demander jusqu'à 1000 questions
+      const response = await fetch("http://localhost:5000/api/questions?limit=1000&page=1", {
+        headers: authHeaders()
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      let loadedQuestions = [];
+
+      if (data?.success && data.questions) {
+        loadedQuestions = data.questions;
+      } else if (Array.isArray(data)) {
+        loadedQuestions = data;
+      } else if (data?.data && Array.isArray(data.data)) {
+        loadedQuestions = data.data;
+      }
+
+      console.log('📥 Loaded questions:', loadedQuestions.length);
+      setQuestions(loadedQuestions);
+    } catch (error) {
+      console.error("❌ Failed to load questions:", error);
+      setQuestions([]);
     }
-    
-    const data = await response.json();
-    
-    let loadedQuestions = [];
-    
-    if (data?.success && data.questions) {
-      loadedQuestions = data.questions;
-    } else if (Array.isArray(data)) {
-      loadedQuestions = data;
-    } else if (data?.data && Array.isArray(data.data)) {
-      loadedQuestions = data.data;
-    }
-    
-    console.log('📥 Loaded questions:', loadedQuestions.length);
-    setQuestions(loadedQuestions);
-  } catch (error) {
-    console.error("❌ Failed to load questions:", error);
-    setQuestions([]);
-  }
-  setLoading(false);
-};
+    setLoading(false);
+  };
 
   useEffect(() => {
     loadQuestions();
@@ -973,45 +966,45 @@ const loadQuestions = async () => {
     setShowEditor(true);
   };
 
-const handleSaveQuestion = async (questionData: Partial<Question>) => {
-  if (!requireAuth()) return;
-  try {
-    const url = editorMode === "create" 
-      ? "http://localhost:5000/api/questions" 
-      : `http://localhost:5000/api/questions/${editingQuestion?.id}`;
-    const method = editorMode === "create" ? "POST" : "PUT";
+  const handleSaveQuestion = async (questionData: Partial<Question>) => {
+    if (!requireAuth()) return;
+    try {
+      const url = editorMode === "create"
+        ? "http://localhost:5000/api/questions"
+        : `http://localhost:5000/api/questions/${editingQuestion?.id}`;
+      const method = editorMode === "create" ? "POST" : "PUT";
 
-    const response = await fetch(url, {
-      method,
-      headers: authHeaders(),
-      body: JSON.stringify(questionData),
-    });
-    
-    const data = await response.json();
-    
-    if (data.success) {
-      setShowEditor(false);
-      
-      // Instead of reloading all questions, add the new one to state
-      if (editorMode === "create" && data.question) {
-        const newQuestion: Question = {
-          ...data.question,
-          createdBy: currentUserId, // Ensure createdBy is set
-        };
-        
-        setQuestions(prev => [newQuestion, ...prev]);
+      const response = await fetch(url, {
+        method,
+        headers: authHeaders(),
+        body: JSON.stringify(questionData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setShowEditor(false);
+
+        // Instead of reloading all questions, add the new one to state
+        if (editorMode === "create" && data.question) {
+          const newQuestion: Question = {
+            ...data.question,
+            createdBy: currentUserId, // Ensure createdBy is set
+          };
+
+          setQuestions(prev => [newQuestion, ...prev]);
+        } else {
+          // For edits, reload to ensure data consistency
+          await loadQuestions();
+        }
       } else {
-        // For edits, reload to ensure data consistency
-        await loadQuestions();
+        alert("Failed to save question: " + (data.error || "Unknown error"));
       }
-    } else {
-      alert("Failed to save question: " + (data.error || "Unknown error"));
+    } catch (error) {
+      console.error("Failed to save question:", error);
+      alert("Network error while saving question.");
     }
-  } catch (error) {
-    console.error("Failed to save question:", error);
-    alert("Network error while saving question.");
-  }
-};
+  };
 
   const handleAiGenerate = async (payload: {
     topic: string;
@@ -1097,101 +1090,101 @@ const handleSaveQuestion = async (questionData: Partial<Question>) => {
     setBatchGenerating(false);
   };
   const handleImportScraped = async (source: string = 'stackoverflow', maxPages: number = 3) => {
-  if (!requireAuth()) return;
-  
-  const confirm = window.confirm(
-    `🌐 Import Real Programming Questions\n\n` +
-    `This will scrape ${maxPages} page(s) from ${source.toUpperCase()}\n` +
-    `Source: Real questions from professional developers\n\n` +
-    `Continue?`
-  );
+    if (!requireAuth()) return;
 
-  
-  if (!confirm) return;
-  
-  setImporting(true);
-  setShowSourceSelector(false);
-  
-  try {
-    console.log(`🕷️ Starting import from ${source}...`);
-    
-    const response = await fetch('http://localhost:5000/api/questions/import-scraped', {
-      method: 'POST',
-      headers: authHeaders(),
-      body: JSON.stringify({
-        source: source,
-        max_pages: maxPages
-      })
-    });
-    
-    const data = await response.json();
-    
-    if (data.success) {
-      alert(
-        `✅ Successfully imported ${data.imported_count} real questions from ${source.toUpperCase()}!\n\n` +
-        `📊 Import Statistics:\n` +
-        `• Total scraped: ${data.total_scraped}\n` +
-        `• Imported: ${data.imported_count}\n` +
-        `• Skipped (duplicates): ${data.skipped_count}\n` +
-        `• Errors: ${data.error_count}\n\n` +
-        `All questions are now in "Pending Review" status.`
-      );
-      
-      // Reload questions to show new imports
-      await loadQuestions();
-    } else {
-      alert(`❌ Failed to import: ${data.error}\n\n${data.details || ''}`);
+    const confirm = window.confirm(
+      `🌐 Import Real Programming Questions\n\n` +
+      `This will scrape ${maxPages} page(s) from ${source.toUpperCase()}\n` +
+      `Source: Real questions from professional developers\n\n` +
+      `Continue?`
+    );
+
+
+    if (!confirm) return;
+
+    setImporting(true);
+    setShowSourceSelector(false);
+
+    try {
+      console.log(`🕷️ Starting import from ${source}...`);
+
+      const response = await fetch('http://localhost:5000/api/questions/import-scraped', {
+        method: 'POST',
+        headers: authHeaders(),
+        body: JSON.stringify({
+          source: source,
+          max_pages: maxPages
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert(
+          `✅ Successfully imported ${data.imported_count} real questions from ${source.toUpperCase()}!\n\n` +
+          `📊 Import Statistics:\n` +
+          `• Total scraped: ${data.total_scraped}\n` +
+          `• Imported: ${data.imported_count}\n` +
+          `• Skipped (duplicates): ${data.skipped_count}\n` +
+          `• Errors: ${data.error_count}\n\n` +
+          `All questions are now in "Pending Review" status.`
+        );
+
+        // Reload questions to show new imports
+        await loadQuestions();
+      } else {
+        alert(`❌ Failed to import: ${data.error}\n\n${data.details || ''}`);
+      }
+    } catch (error) {
+      console.error('Failed to import scraped questions:', error);
+      alert('❌ Network error during import.\n\nMake sure:\n• Backend is running on port 5000\n• Python AI service is running on port 8000');
+    } finally {
+      setImporting(false);
     }
-  } catch (error) {
-    console.error('Failed to import scraped questions:', error);
-    alert('❌ Network error during import.\n\nMake sure:\n• Backend is running on port 5000\n• Python AI service is running on port 8000');
-  } finally {
-    setImporting(false);
-  }
-};
-const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'leetcode') => {
-  if (!requireAuth()) return;
-  
-  setImporting(true);
-  setShowUrlScraper(false);
-  
-  try {
-    console.log(`🔗 Scraping ${urls.length} URLs from ${platform}...`);
-    
-    const response = await fetch('http://localhost:5000/api/questions/scrape', {
-      method: 'POST',
-      headers: authHeaders(),
-      body: JSON.stringify({
-        urls: urls,
-        platform: platform
-      })
-    });
-    
-    const data = await response.json();
-    
-    if (data.success) {
-      alert(
-        `✅ Successfully scraped ${data.scrapingResult.successfullySaved} questions!\n\n` +
-        `📊 Scraping Statistics:\n` +
-        `• Total URLs: ${data.scrapingResult.totalUrls}\n` +
-        `• Successfully scraped: ${data.scrapingResult.successfullyScraped}\n` +
-        `• Saved to database: ${data.scrapingResult.successfullySaved}\n` +
-        `• Errors: ${data.scrapingResult.savingErrors}\n\n` +
-        `All questions are now in "Pending Review" status.`
-      );
-      
-      // Reload questions
-      await loadQuestions();
-    } else {
-      alert(`❌ Failed to scrape: ${data.error}\n\n${data.details || ''}`);
+  };
+  const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'leetcode') => {
+    if (!requireAuth()) return;
+
+    setImporting(true);
+    setShowUrlScraper(false);
+
+    try {
+      console.log(`🔗 Scraping ${urls.length} URLs from ${platform}...`);
+
+      const response = await fetch('http://localhost:5000/api/questions/scrape', {
+        method: 'POST',
+        headers: authHeaders(),
+        body: JSON.stringify({
+          urls: urls,
+          platform: platform
+        })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert(
+          `✅ Successfully scraped ${data.scrapingResult.successfullySaved} questions!\n\n` +
+          `📊 Scraping Statistics:\n` +
+          `• Total URLs: ${data.scrapingResult.totalUrls}\n` +
+          `• Successfully scraped: ${data.scrapingResult.successfullyScraped}\n` +
+          `• Saved to database: ${data.scrapingResult.successfullySaved}\n` +
+          `• Errors: ${data.scrapingResult.savingErrors}\n\n` +
+          `All questions are now in "Pending Review" status.`
+        );
+
+        // Reload questions
+        await loadQuestions();
+      } else {
+        alert(`❌ Failed to scrape: ${data.error}\n\n${data.details || ''}`);
+      }
+    } catch (error) {
+      console.error('Failed to scrape URLs:', error);
+      alert('❌ Network error during scraping.');
+    } finally {
+      setImporting(false);
     }
-  } catch (error) {
-    console.error('Failed to scrape URLs:', error);
-    alert('❌ Network error during scraping.');
-  } finally {
-    setImporting(false);
-  }
-};
+  };
 
   return (
     <div className="min-h-screen bg-[linear-gradient(135deg,#F6FAFF_0%,#EEF4FF_100%)]">
@@ -1279,18 +1272,16 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
               <div className="flex items-center bg-gray-100 rounded-xl p-1">
                 <button
                   onClick={() => setViewMode("grid")}
-                  className={`px-3.5 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-all ${
-                    viewMode === "grid" ? "bg-white text-[#1B73E8] shadow-sm" : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className={`px-3.5 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-all ${viewMode === "grid" ? "bg-white text-[#1B73E8] shadow-sm" : "text-gray-600 hover:text-gray-900"
+                    }`}
                 >
                   <Grid3x3 className="w-4 h-4" />
                   Grid
                 </button>
                 <button
                   onClick={() => setViewMode("table")}
-                  className={`px-3.5 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-all ${
-                    viewMode === "table" ? "bg-white text-[#1B73E8] shadow-sm" : "text-gray-600 hover:text-gray-900"
-                  }`}
+                  className={`px-3.5 py-2 rounded-lg text-sm font-medium flex items-center gap-2 transition-all ${viewMode === "table" ? "bg-white text-[#1B73E8] shadow-sm" : "text-gray-600 hover:text-gray-900"
+                    }`}
                 >
                   <List className="w-4 h-4" />
                   Table
@@ -1342,9 +1333,8 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
                   <button
                     key={src}
                     onClick={() => setFilters((f) => ({ ...f, source: src }))}
-                    className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${
-                      filters.source === src ? "bg-white text-[#1B73E8] shadow-sm" : "text-gray-600 hover:text-gray-900"
-                    }`}
+                    className={`px-3.5 py-2 rounded-lg text-sm font-medium transition-all ${filters.source === src ? "bg-white text-[#1B73E8] shadow-sm" : "text-gray-600 hover:text-gray-900"
+                      }`}
                     title={src === "all" ? "Show all" : src === "ai" ? "AI generated only" : "Manual only"}
                   >
                     {src === "ai" ? "AI" : src === "manual" ? "Manual" : "All"}
@@ -1426,28 +1416,28 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
                     </span>
                   )}
                 </motion.button>
- 
 
-              {/* NOUVEAU: Import from URL Button */}
-              <motion.button
-                onClick={() => setShowUrlScraper(true)}
-                disabled={importing}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="bg-gradient-to-r mx-2 from-purple-600 via-pink-600 to-red-600 hover:from-purple-700 hover:via-pink-700 hover:to-red-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-lg shadow-purple-500/30 disabled:opacity-60 disabled:cursor-not-allowed transition-all"
-              >
-                {importing ? (
-                  <span className="inline-flex items-center gap-2">
-                    <span className="w-4 h-4 border-2 border-white/50 border-t-white rounded-full animate-spin" />
-                    Scraping...
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center gap-2">
-                    <Link className="w-4 h-4" />
-                    Import from URL
-                  </span>
-                )}
-              </motion.button>
+
+                {/* NOUVEAU: Import from URL Button */}
+                <motion.button
+                  onClick={() => setShowUrlScraper(true)}
+                  disabled={importing}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="bg-gradient-to-r mx-2 from-purple-600 via-pink-600 to-red-600 hover:from-purple-700 hover:via-pink-700 hover:to-red-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-lg shadow-purple-500/30 disabled:opacity-60 disabled:cursor-not-allowed transition-all"
+                >
+                  {importing ? (
+                    <span className="inline-flex items-center gap-2">
+                      <span className="w-4 h-4 border-2 border-white/50 border-t-white rounded-full animate-spin" />
+                      Scraping...
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-2">
+                      <Link className="w-4 h-4" />
+                      Import from URL
+                    </span>
+                  )}
+                </motion.button>
 
                 {/* Source Selector Dropdown */}
                 <AnimatePresence>
@@ -1481,7 +1471,7 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
                         <div className="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                           <Code2 className="w-7 h-7 text-white" />
                         </div>
-                        
+
                         {/* Content */}
                         <div className="text-left flex-1">
                           <div className="font-black text-gray-900 text-base flex items-center gap-2">
@@ -1504,7 +1494,7 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
                             </span>
                           </div>
                         </div>
-                        
+
                         {/* Arrow */}
                         <ArrowRight className="w-5 h-5 text-orange-600 group-hover:translate-x-1 transition-transform" />
                       </motion.button>
@@ -1520,7 +1510,7 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
                         <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                           <Code2 className="w-7 h-7 text-white" />
                         </div>
-                        
+
                         {/* Content */}
                         <div className="text-left flex-1">
                           <div className="font-black text-gray-900 text-base flex items-center gap-2">
@@ -1543,7 +1533,7 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
                             </span>
                           </div>
                         </div>
-                        
+
                         {/* Arrow */}
                         <ArrowRight className="w-5 h-5 text-amber-600 group-hover:translate-x-1 transition-transform" />
                       </motion.button>
@@ -1595,10 +1585,10 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
                   question.status === "approved"
                     ? "bg-green-50 text-green-700 border-green-200"
                     : question.status === "pending_review"
-                    ? "bg-amber-50 text-amber-700 border-amber-200"
-                    : question.status === "rejected"
-                    ? "bg-rose-50 text-rose-700 border-rose-200"
-                    : "bg-slate-50 text-slate-700 border-slate-200";
+                      ? "bg-amber-50 text-amber-700 border-amber-200"
+                      : question.status === "rejected"
+                        ? "bg-rose-50 text-rose-700 border-rose-200"
+                        : "bg-slate-50 text-slate-700 border-slate-200";
 
                 return (
                   <motion.div
@@ -1611,13 +1601,12 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
                     className={`${panel} overflow-hidden group`}
                   >
                     <div
-                      className={`h-1.5 ${
-                        question.difficulty === "easy"
+                      className={`h-1.5 ${question.difficulty === "easy"
                           ? "bg-gradient-to-r from-emerald-400 to-emerald-600"
                           : question.difficulty === "medium"
-                          ? "bg-gradient-to-r from-amber-400 to-amber-600"
-                          : "bg-gradient-to-r from-rose-400 to-rose-600"
-                      }`}
+                            ? "bg-gradient-to-r from-amber-400 to-amber-600"
+                            : "bg-gradient-to-r from-rose-400 to-rose-600"
+                        }`}
                     />
 
                     <div className="p-6">
@@ -1631,22 +1620,20 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
 
                         <div className="flex items-center gap-2">
                           <span
-                            className={`${pill} ${
-                              question.difficulty === "easy"
+                            className={`${pill} ${question.difficulty === "easy"
                                 ? "bg-emerald-50 text-emerald-700 border-emerald-200"
                                 : question.difficulty === "medium"
-                                ? "bg-amber-50 text-amber-700 border-amber-200"
-                                : "bg-rose-50 text-rose-700 border-rose-200"
-                            }`}
+                                  ? "bg-amber-50 text-amber-700 border-amber-200"
+                                  : "bg-rose-50 text-rose-700 border-rose-200"
+                              }`}
                           >
                             {question.difficulty.toUpperCase()}
                           </span>
                           <span
-                            className={`${pill} ${
-                              isAI
+                            className={`${pill} ${isAI
                                 ? "bg-green-50 text-green-700 border-green-200"
                                 : "bg-gray-50 text-gray-700 border-gray-200"
-                            }`}
+                              }`}
                           >
                             {isAI ? (
                               <>
@@ -1819,10 +1806,10 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
                       q.status === "approved"
                         ? "bg-green-50 text-green-700 border-green-200"
                         : q.status === "pending_review"
-                        ? "bg-amber-50 text-amber-700 border-amber-200"
-                        : q.status === "rejected"
-                        ? "bg-rose-50 text-rose-700 border-rose-200"
-                        : "bg-slate-50 text-slate-700 border-slate-200";
+                          ? "bg-amber-50 text-amber-700 border-amber-200"
+                          : q.status === "rejected"
+                            ? "bg-rose-50 text-rose-700 border-rose-200"
+                            : "bg-slate-50 text-slate-700 border-slate-200";
 
                     return (
                       <motion.tr
@@ -1835,13 +1822,12 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
                         <td className="px-6 py-5">
                           <div className="flex items-start gap-3">
                             <div
-                              className={`w-1 h-full rounded-full ${
-                                q.difficulty === "easy"
+                              className={`w-1 h-full rounded-full ${q.difficulty === "easy"
                                   ? "bg-emerald-500"
                                   : q.difficulty === "medium"
-                                  ? "bg-amber-500"
-                                  : "bg-rose-500"
-                              }`}
+                                    ? "bg-amber-500"
+                                    : "bg-rose-500"
+                                }`}
                             />
                             <div className="flex-1 min-w-0">
                               <div className="font-bold text-gray-900 group-hover:text-[#1B73E8] cursor-pointer transition-colors">
@@ -1881,9 +1867,8 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
                         </td>
                         <td className="px-6 py-5">
                           <span
-                            className={`${pill} shadow-sm ${
-                              isAI ? "bg-green-50 text-green-700 border-green-200" : "bg-gray-50 text-gray-700 border-gray-200"
-                            }`}
+                            className={`${pill} shadow-sm ${isAI ? "bg-green-50 text-green-700 border-green-200" : "bg-gray-50 text-gray-700 border-gray-200"
+                              }`}
                           >
                             {isAI ? (
                               <>
@@ -1898,13 +1883,12 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
                         </td>
                         <td className="px-6 py-5">
                           <span
-                            className={`${pill} shadow-sm font-bold ${
-                              q.difficulty === "easy"
+                            className={`${pill} shadow-sm font-bold ${q.difficulty === "easy"
                                 ? "bg-emerald-50 text-emerald-700 border-emerald-200"
                                 : q.difficulty === "medium"
-                                ? "bg-amber-50 text-amber-700 border-amber-200"
-                                : "bg-rose-50 text-rose-700 border-rose-200"
-                            }`}
+                                  ? "bg-amber-50 text-amber-700 border-amber-200"
+                                  : "bg-rose-50 text-rose-700 border-rose-200"
+                              }`}
                           >
                             {q.difficulty.toUpperCase()}
                           </span>
@@ -2003,7 +1987,8 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
 
       {showEditor && (
         <QuestionEditor
-          question={editingQuestion || undefined}
+          // question={editingQuestion || undefined}
+          question={editingQuestion as any}
           onSave={handleSaveQuestion}
           onCancel={() => setShowEditor(false)}
           mode={editorMode}
@@ -2052,7 +2037,7 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
                   </div>
                 </div>
               </div>
-              
+
               <div className="mt-5 flex items-center gap-2 text-xs text-gray-500">
                 <div className="w-2 h-2 bg-orange-500 rounded-full animate-pulse" />
                 Making HTTP requests to platform...
@@ -2072,7 +2057,8 @@ const handleScrapeUrls = async (urls: string[], platform: 'stackoverflow' | 'lee
 
       {showEditor && (
         <QuestionEditor
-          question={editingQuestion || undefined}
+          // question={editingQuestion || undefined}
+          question={editingQuestion as any}
           onSave={handleSaveQuestion}
           onCancel={() => setShowEditor(false)}
           mode={editorMode}

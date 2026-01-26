@@ -22,7 +22,8 @@ const DashboardNavbar: React.FC<DashboardNavbarProps> = ({
 }) => {
   const { user } = useAuth();
   const { profileData } = useProfile();
-  const pathname = usePathname();
+  // const pathname = usePathname();
+  const pathname = usePathname() ?? '';
 
   // ✅ Notification modal state
   const [isNotifOpen, setIsNotifOpen] = useState(false);

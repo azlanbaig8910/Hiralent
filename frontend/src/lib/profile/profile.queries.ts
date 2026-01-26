@@ -103,7 +103,8 @@ const refreshProfileData = async (setProfileData: any , updateUser: any) => {
 export const useUpdateBasicInfo = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  // const { updateUser } = useAuth(); 
+  const { updateUser } = useAuth() as any;
 
   return useMutation({
     mutationFn: updateBasicInfo,
@@ -127,7 +128,8 @@ export const useUpdateBasicInfo = () => {
 export const useUpdateSkills = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  // const { updateUser } = useAuth() as any; 
+  const { updateUser } = useAuth() as any;
   
   return useMutation({
     mutationFn: updateSkills,
@@ -149,7 +151,8 @@ export const useUpdateSkills = () => {
 export const useAddSkill = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  // const { updateUser } = useAuth() as any; 
+  const { updateUser } = useAuth() as any;
   
   return useMutation({
     mutationFn: addSkill,
@@ -171,7 +174,8 @@ export const useAddSkill = () => {
 export const useDeleteSkill = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  // const { updateUser } = useAuth() as any; 
+  const { updateUser } = useAuth() as any;
   
   return useMutation({
     mutationFn: deleteSkill,
@@ -195,7 +199,7 @@ export const useDeleteSkill = () => {
 export const useUpdateExperience = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  const { updateUser } = useAuth() as any; 
   
   return useMutation({
     mutationFn: updateExperience,
@@ -217,7 +221,7 @@ export const useUpdateExperience = () => {
 export const useAddExperience = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  const { updateUser } = useAuth() as any; 
   
   return useMutation({
     mutationFn: addExperience,
@@ -241,7 +245,7 @@ export const useAddExperience = () => {
 export const useUpdateEducation = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  const { updateUser } = useAuth() as any; 
   
   return useMutation({
     mutationFn: updateEducation,
@@ -263,7 +267,7 @@ export const useUpdateEducation = () => {
 export const useAddEducation = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  const { updateUser } = useAuth() as any; 
   
   return useMutation({
     mutationFn: addEducation,
@@ -287,7 +291,7 @@ export const useAddEducation = () => {
 export const useUpdateLinks = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  const { updateUser } = useAuth() as any; 
   
   return useMutation({
     mutationFn: updateLinks,
@@ -309,7 +313,7 @@ export const useUpdateLinks = () => {
 export const useAddLink = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  const { updateUser } = useAuth() as any; 
   
   return useMutation({
     mutationFn: addLink,
@@ -331,7 +335,7 @@ export const useAddLink = () => {
 export const useDeleteLink = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  const { updateUser } = useAuth() as any; 
   
   return useMutation({
     mutationFn: deleteLink,
@@ -355,7 +359,7 @@ export const useDeleteLink = () => {
 export const useUpdateJobBenefits = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  const { updateUser } = useAuth() as any; 
   
   return useMutation({
     mutationFn: updateJobBenefits,
@@ -379,7 +383,7 @@ export const useUpdateJobBenefits = () => {
 export const useUploadProfilePicture = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  const { updateUser } = useAuth() as any; 
   
   return useMutation({
     mutationFn: uploadProfilePicture,
@@ -403,7 +407,7 @@ export const useUploadProfilePicture = () => {
 export const useBulkUpdateProfile = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  const { updateUser } = useAuth() as any; 
   
   return useMutation({
     mutationFn: bulkUpdateProfile,
@@ -425,7 +429,7 @@ export const useBulkUpdateProfile = () => {
 export const useUploadApplicationResume = () => {
   const queryClient = useQueryClient();
   const { setProfileData } = useProfile();
-  const { updateUser } = useAuth(); 
+  const { updateUser } = useAuth() as any; 
   
   return useMutation({
     mutationFn: uploadApplicationResume,

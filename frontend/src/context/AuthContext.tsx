@@ -13,6 +13,13 @@ interface User {
   linkedin_url?: string;
   agency_id?: string;
   agency?: any;
+
+  profile?: {
+    about_me?: string;
+    job_benefits?: string[];
+    skills?: string[];
+    experience?: string;
+  };
 }
 
 interface AuthContextType {
@@ -75,27 +82,27 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
     console.log("✅ Token saved to localStorage:", authToken.substring(0, 20) + "...");
     console.log("✅ User saved to localStorage:", userData.email);
-    
+
     // Verify it was saved
     const verify = localStorage.getItem("authToken");
     console.log("✅ Verification - Token in localStorage:", verify ? "YES" : "NO");
   };
 
-const logout = () => {
-  console.log("🚪 Logout called");
-  
-  localStorage.removeItem('profileData');
-  localStorage.removeItem('profileCompleteness');
-  
-  localStorage.removeItem("authToken");
-  localStorage.removeItem("authUser");
+  const logout = () => {
+    console.log("🚪 Logout called");
 
-  // ✅ Clear in-memory state too
-  setUser(null);
-  setToken(null);
+    localStorage.removeItem('profileData');
+    localStorage.removeItem('profileCompleteness');
 
-  console.log("✅ Auth cleared from localStorage and state");
-};
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("authUser");
+
+    // ✅ Clear in-memory state too
+    setUser(null);
+    setToken(null);
+
+    console.log("✅ Auth cleared from localStorage and state");
+  };
 
 
   return (

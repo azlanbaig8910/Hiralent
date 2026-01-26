@@ -17,8 +17,15 @@ import { SecurityViolation } from '@/src/types/assessment.types';
 
 const AssessmentTestPage = () => {
   const router = useRouter();
+  // const params = useParams();
+  // const assessmentId = params.assessmentId as string;
+
   const params = useParams();
-  const assessmentId = params.assessmentId as string;
+  const assessmentId = params?.assessmentId as string | undefined;
+
+  if (!assessmentId) {
+    return <div>Loading assessment...</div>;
+  }
 
   const { assessmentState } = useProfile();
 
@@ -58,12 +65,12 @@ const AssessmentTestPage = () => {
     }
   }, [currentQuestion, assessmentState.currentAssessment, isSubmitted, assessmentId]);
 
-  
+
   // Handle violations
   const handleSecurityViolation = (violation: SecurityViolation) => {
     setViolations(prev => prev + 1);
     toast.error(`Security violation: ${violation.details}`);
-    
+
     if (violations >= 2) {
       toast.error('Too many violations. Assessment terminated.');
       router.push('/candidate/dashboard/skills-assessment');
@@ -128,7 +135,7 @@ const AssessmentTestPage = () => {
     const handlePopState = (e: PopStateEvent) => {
       e.preventDefault();
       const confirmLeave = window.confirm('Are you sure you want to leave the assessment? Your progress will be lost.');
-      
+
       if (!confirmLeave) {
         window.history.pushState(null, '', window.location.pathname);
       } else {
@@ -156,7 +163,7 @@ const AssessmentTestPage = () => {
     );
   }
 
-console.log('Current Question Options:', currentQuestion?.options);
+  console.log('Current Question Options:', currentQuestion?.options);
   const totalQuestions = assessmentState.currentAssessment?.totalQuestions || 25;
   const currentQuestionIndex = assessmentState.currentAssessment?.currentQuestionIndex || 0;
   const isLastQuestion = currentQuestionIndex >= totalQuestions - 1;
@@ -226,7 +233,7 @@ console.log('Current Question Options:', currentQuestion?.options);
               </>
             ) : (
               <>
-                Read the question carefully and select your best answer. 
+                Read the question carefully and select your best answer.
                 Questions are automatically submitted when time expires.
               </>
             )}
@@ -239,9 +246,9 @@ console.log('Current Question Options:', currentQuestion?.options);
           <div className="bg-white rounded-lg p-6 text-center">
             <div className="w-8 h-8 border-4 border-[#005DDC] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-[#222] font-medium">
-              {isLastQuestion ? 'Completing Assessment...' : 
-               submitAnswerMutation.isPending ? 'Submitting Answer...' :
-               'Processing...'}
+              {isLastQuestion ? 'Completing Assessment...' :
+                submitAnswerMutation.isPending ? 'Submitting Answer...' :
+                  'Processing...'}
             </p>
           </div>
         </div>

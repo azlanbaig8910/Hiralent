@@ -6,7 +6,8 @@ import { useAuth } from "../../context/AuthContext";
 import Loader from "./Loader";
 
 export default function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { user, loading } = useAuth();
+  // const { user, loading } = useAuth();
+  const { user, loading } = useAuth() as any;
   const router = useRouter();
   const pathnameRaw = usePathname();
   const pathname = pathnameRaw ?? '/';

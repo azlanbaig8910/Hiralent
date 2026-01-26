@@ -28,48 +28,54 @@ interface DashboardLayoutProps {
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
   const [isOpen, setIsOpen] = useState(true);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
+  // const pathname = usePathname();
 
   // 👉 Define menus with new items
   const defaultMenu = [
-    { name: "Dashboard",        icon: LayoutDashboard, href: "/company/dashboard" },
-    { name: "Employer Profile", icon: User,            href: "/company/dashboard/employer-profile" },
-    { name: "Post Job",         icon: SquarePlus,      href: "/company/dashboard/postjob" },
+    { name: "Dashboard", icon: LayoutDashboard, href: "/company/dashboard" },
+    { name: "Employer Profile", icon: User, href: "/company/dashboard/employer-profile" },
+    { name: "Post Job", icon: SquarePlus, href: "/company/dashboard/postjob" },
 
     // ✅ your existing sections
-    { name: "My Jobs",          icon: Briefcase,       href: "/company/dashboard/jobManagement" },
-    { name: "My Assessments",   icon: CheckSquare,     href: "/company/dashboard/assessmentManagement" },
+    { name: "My Jobs", icon: Briefcase, href: "/company/dashboard/jobManagement" },
+    { name: "My Assessments", icon: CheckSquare, href: "/company/dashboard/assessmentManagement" },
 
     // ✅ NEW SECTIONS
-    { name: "Question Bank",    icon: BookOpen,        href: "/company/dashboard/questions" },
-    { name: "Review Queue",     icon: Clock,           href: "/company/dashboard/review-queue" },
+    { name: "Question Bank", icon: BookOpen, href: "/company/dashboard/questions" },
+    { name: "Review Queue", icon: Clock, href: "/company/dashboard/review-queue" },
 
-    { name: "Notifications",    icon: Bell,            href: "/company/dashboard/notifications" },
-    { name: "Messages",         icon: MessageSquareText, href: "/company/dashboard/messages" },
-    { name: "Account Setting",  icon: Settings,        href: "/company/dashboard/settings" },
-    { name: "Manage Hiring",    icon: Settings2,       href: "/company/dashboard/manage-hiring" },
+    { name: "Notifications", icon: Bell, href: "/company/dashboard/notifications" },
+    { name: "Messages", icon: MessageSquareText, href: "/company/dashboard/messages" },
+    { name: "Account Setting", icon: Settings, href: "/company/dashboard/settings" },
+    { name: "Manage Hiring", icon: Settings2, href: "/company/dashboard/manage-hiring" },
   ];
 
   const postJobMenu = [
-    { name: "Dashboard",        icon: LayoutDashboard, href: "/company/dashboard" },
-    { name: "Employer Profile", icon: User,            href: "/company/dashboard/employer-profile" },
-    { name: "Post Job",         icon: SquarePlus,      href: "/company/dashboard/postjob" },
+    { name: "Dashboard", icon: LayoutDashboard, href: "/company/dashboard" },
+    { name: "Employer Profile", icon: User, href: "/company/dashboard/employer-profile" },
+    { name: "Post Job", icon: SquarePlus, href: "/company/dashboard/postjob" },
 
     // ✅ also include here so they appear while on /postjob
-    { name: "My Jobs",          icon: Briefcase,       href: "/company/dashboard/jobManagement" },
-    { name: "My Assessments",   icon: CheckSquare,     href: "/company/dashboard/assessmentManagement" },
+    { name: "My Jobs", icon: Briefcase, href: "/company/dashboard/jobManagement" },
+    { name: "My Assessments", icon: CheckSquare, href: "/company/dashboard/assessmentManagement" },
 
     // ✅ NEW SECTIONS (also in postJobMenu)
-    { name: "Question Bank",    icon: BookOpen,        href: "/company/dashboard/questions" },
-    { name: "Review Queue",     icon: Clock,           href: "/company/dashboard/review-queue" },
+    { name: "Question Bank", icon: BookOpen, href: "/company/dashboard/questions" },
+    { name: "Review Queue", icon: Clock, href: "/company/dashboard/review-queue" },
 
-    { name: "Notifications",    icon: Bell,            href: "/company/dashboard/notifications" },
-    { name: "Messages",         icon: MessageSquareText, href: "/company/dashboard/messages" },
-    { name: "Account Setting",  icon: Settings,        href: "/company/dashboard/settings" },
-    { name: "Manage Hiring",    icon: Settings2,       href: "/company/dashboard/manage-hiring" },
+    { name: "Notifications", icon: Bell, href: "/company/dashboard/notifications" },
+    { name: "Messages", icon: MessageSquareText, href: "/company/dashboard/messages" },
+    { name: "Account Setting", icon: Settings, href: "/company/dashboard/settings" },
+    { name: "Manage Hiring", icon: Settings2, href: "/company/dashboard/manage-hiring" },
   ];
 
   // 👉 Switch menus based on route
+  // const menuItems = pathname.startsWith("/company/dashboard/postjob")
+  //   ? postJobMenu
+  //   : defaultMenu;
+
+  const pathname = usePathname() ?? "";
+
   const menuItems = pathname.startsWith("/company/dashboard/postjob")
     ? postJobMenu
     : defaultMenu;
@@ -85,7 +91,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               setIsOpen={setIsOpen}
               isMobile={false}
               isMobileMenuOpen={false}
-              setIsMobileMenuOpen={() => {}}
+              setIsMobileMenuOpen={() => { }}
               menuItems={menuItems}
             />
           </div>
@@ -100,7 +106,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               <div className="absolute left-0 top-0 h-full">
                 <DashboardSidebar
                   isOpen={true}
-                  setIsOpen={() => {}}
+                  setIsOpen={() => { }}
                   isMobile={true}
                   isMobileMenuOpen={isMobileMenuOpen}
                   setIsMobileMenuOpen={setIsMobileMenuOpen}

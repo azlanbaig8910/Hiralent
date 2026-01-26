@@ -34,9 +34,14 @@ const AssessmentStartPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { profileData } = useProfile();
-  
-  const skillId = searchParams.get('skill');
-  
+
+  // const skillId = searchParams.get('skill');
+  const skillId = searchParams?.get('skill') ?? null;
+
+  if (!skillId) {
+    return <div>Loading assessment...</div>;
+  }
+
   const startAssessmentMutation = useStartAssessment();
 
   // Helper functions
@@ -55,7 +60,7 @@ const AssessmentStartPage = () => {
 
     const base = baseCount[proficiency as keyof typeof baseCount] || 15;
     const multiplier = categoryMultiplier[category as keyof typeof categoryMultiplier] || 1;
-    
+
     return Math.round(base * multiplier);
   };
 
@@ -75,7 +80,7 @@ const AssessmentStartPage = () => {
   };
 
   const mapProficiencyToDifficulty = (proficiency: string): 'BEGINNER' | 'INTERMEDIATE' | 'ADVANCED' | 'EXPERT' => {
-    switch(proficiency?.toLowerCase()) {
+    switch (proficiency?.toLowerCase()) {
       case 'beginner': return 'BEGINNER';
       case 'intermediate': return 'INTERMEDIATE';
       case 'advanced': return 'ADVANCED';
@@ -84,7 +89,7 @@ const AssessmentStartPage = () => {
   };
 
   const getCategoryDisplayName = (category: string): string => {
-    switch(category?.toLowerCase()) {
+    switch (category?.toLowerCase()) {
       case 'technical': return 'Technical';
       case 'soft': return 'Soft Skills';
       case 'certification': return 'Certification';
@@ -122,7 +127,7 @@ const AssessmentStartPage = () => {
       .map((skill: ProfileSkill) => {
         const questionCount = getQuestionCountByProficiency(skill.proficiency, skill.skill_category);
         const timeEstimate = getTimeEstimateByProficiency(skill.proficiency, questionCount);
-        
+
         return {
           id: skill.skill_id,
           name: skill.skill_name,
@@ -138,7 +143,7 @@ const AssessmentStartPage = () => {
     return transformedSkills.sort((a, b) => {
       if (a.isRecommended && !b.isRecommended) return -1;
       if (!a.isRecommended && b.isRecommended) return 1;
-      
+
       const difficultyOrder = { 'ADVANCED': 3, 'INTERMEDIATE': 2, 'BEGINNER': 1, 'EXPERT': 4 };
       return difficultyOrder[b.difficulty] - difficultyOrder[a.difficulty];
     });
@@ -146,17 +151,17 @@ const AssessmentStartPage = () => {
 
   const handleStartAssessment = (skillId: string, assessmentType: string) => {
     const selectedSkill = profileData?.skills?.find((skill: ProfileSkill) => skill.skill_id === skillId);
-    
+
     if (!selectedSkill) {
       toast.error('Selected skill not found');
       return;
     }
 
-    console.log('Starting assessment:', { 
-      skillId, 
-      assessmentType, 
+    console.log('Starting assessment:', {
+      skillId,
+      assessmentType,
       skillName: selectedSkill.skill_name,
-      proficiency: selectedSkill.proficiency 
+      proficiency: selectedSkill.proficiency
     });
 
     toast.loading('Starting your assessment...', {
@@ -173,11 +178,11 @@ const AssessmentStartPage = () => {
 
   const availableSkills = transformSkillsForAssessment();
 
-  const filteredSkills = skillId 
+  const filteredSkills = skillId
     ? [
-        ...availableSkills.filter(skill => skill.id === skillId),
-        ...availableSkills.filter(skill => skill.id !== skillId)
-      ]
+      ...availableSkills.filter(skill => skill.id === skillId),
+      ...availableSkills.filter(skill => skill.id !== skillId)
+    ]
     : availableSkills;
 
   return (
@@ -245,7 +250,7 @@ const AssessmentStartPage = () => {
                   <h4 className="font-medium text-[#222] mb-2">Validate Your Skills</h4>
                   <p className="text-sm text-[#757575]">Get objective measurement of your technical abilities</p>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                     <svg className="w-6 h-6 text-[#005DDC]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -255,7 +260,7 @@ const AssessmentStartPage = () => {
                   <h4 className="font-medium text-[#222] mb-2">Identify Growth Areas</h4>
                   <p className="text-sm text-[#757575]">Discover strengths and areas for improvement</p>
                 </div>
-                
+
                 <div className="text-center">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
                     <svg className="w-6 h-6 text-[#005DDC]" fill="none" stroke="currentColor" viewBox="0 0 24 24">

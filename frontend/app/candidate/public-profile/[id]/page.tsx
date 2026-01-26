@@ -13,11 +13,17 @@ import BlogSection from '@/src/components/company/public-profile/Blog';
 import { PublicProfileData } from '@/src/types/profile';
 
 export default function PublicProfilePage() {
-    const params = useParams();
-    const candidateId = params.id as string;
-    
+    // const params = useParams();
+    // const candidateId = params.id as string;
 
-      console.log('🔍 Page mounted');
+    const params = useParams();
+    const candidateId = params?.id as string | undefined;
+
+    if (!candidateId) {
+        return <div>Loading profile...</div>;
+    }
+
+    console.log('🔍 Page mounted');
     console.log('🆔 candidateId:', candidateId);
     console.log('🔄 candidateId exists:', !!candidateId);
 
@@ -53,7 +59,7 @@ export default function PublicProfilePage() {
                     </div>
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">Profile Not Found</h2>
                     <p className="text-gray-600 mb-6">The candidate profile you're looking for doesn't exist or has been removed.</p>
-                    <button 
+                    <button
                         onClick={() => window.history.back()}
                         className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
                     >
@@ -101,13 +107,13 @@ export default function PublicProfilePage() {
         <main className="bg-white">
             {/* Hero Section with Profile Data */}
             <Hero profile={profile} />
-            
+
             {/* Logos Strip */}
             <LogosStrip />
-            
+
             {/* Skills Section */}
             <SkillsSection skills={profile.skills} />
-            
+
             {/* Experience & Education */}
             <div className="py-8 sm:py-16 bg-gray-50">
                 <div className="max-w-[400px] sm:max-w-[740px] md:max-w-[970px] lg:max-w-[1090px] xl:max-w-[1345px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -117,7 +123,7 @@ export default function PublicProfilePage() {
                     </div>
                 </div>
             </div>
-            
+
             {/* Languages & Links */}
             {(languages.length > 0 || links.length > 0) && (
                 <div className="py-16 bg-white">
@@ -142,14 +148,14 @@ export default function PublicProfilePage() {
                                     </div>
                                 </div>
                             )}
-                            
+
                             {/* Social Links */}
                             {links.length > 0 && (
                                 <div>
                                     <h3 className="text-2xl font-bold text-gray-900 mb-6">Links</h3>
                                     <div className="grid gap-4">
                                         {links.map((link: any, index: number) => (
-                                            <a 
+                                            <a
                                                 key={index}
                                                 href={link.url}
                                                 target="_blank"
@@ -172,7 +178,7 @@ export default function PublicProfilePage() {
                     </div>
                 </div>
             )}
-            
+
             {/* Testimonials */}
             <div className="py-0 sm:py-16 bg-gray-50">
                 <div className="max-w-[1345px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -180,7 +186,7 @@ export default function PublicProfilePage() {
                     <TestimonialSlider testimonials={testimonials} />
                 </div>
             </div>
-            
+
             {/* Blog Section */}
             <BlogSection />
         </main>
