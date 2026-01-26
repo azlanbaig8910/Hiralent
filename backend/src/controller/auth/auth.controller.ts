@@ -137,9 +137,3 @@ export const deleteAccountController = async (req: Request, res: Response) => {
     });
   }
 };
-
-
-
-
-
-

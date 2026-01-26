@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import * as companyService from '../../services/company.service';
 
-
 export const createProfileController = async (req: Request, res: Response): Promise<void> => {
   try {
     if (!req.user) {
