@@ -7,6 +7,7 @@ const app = express();
 
 const allowedOrigins = [
   'http://localhost:3000',
+  'https://hiralent-beta.vercel.app',
   'https://hiralent.vercel.app'
 ];
 

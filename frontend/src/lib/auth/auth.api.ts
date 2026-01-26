@@ -1,21 +1,29 @@
 import axios from 'axios';
 import { APIResponse } from '../profile/profile.api';
 
+// export const api = axios.create({
+//   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+//   headers: { 'Content-Type': 'application/json' },
+// });
+
 export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
-  headers: { 'Content-Type': 'application/json' },
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  withCredentials: true, // 🔥 THIS LINE IS MANDATORY
 });
 
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('authToken');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-    console.log("📤 Sending request with token:", token.substring(0, 20) + "...");
-  } else {
-    console.log("📤 Sending request without token");
-  }
-  return config;
-});
+// api.interceptors.request.use((config) => {
+//   const token = localStorage.getItem('authToken');
+//   if (token) {
+//     config.headers.Authorization = `Bearer ${token}`;
+//     console.log("📤 Sending request with token:", token.substring(0, 20) + "...");
+//   } else {
+//     console.log("📤 Sending request without token");
+//   }
+//   return config;
+// });
 
 export const signup = async (data: {
   email: string;
@@ -68,24 +76,41 @@ export const updateSalary = async (data: {
   return res.data;
 };
 
+// export const uploadResume = async (resume: File) => {
+//   const formData = new FormData();
+//   formData.append('cv', resume);
+
+//   const token = localStorage.getItem('authToken');
+
+//   const response = await axios.post(
+//     `${process.env.NEXT_PUBLIC_BASE_URL}/candidates/profile-upload`,
+//     formData,
+//     {
+//       headers: {
+//         'Content-Type': 'multipart/form-data',
+//         Authorization: `Bearer ${token}`,
+//       },
+//     }
+//   );
+
+//   console.log(response.data);
+//   return response.data;
+// };
+
 export const uploadResume = async (resume: File) => {
   const formData = new FormData();
   formData.append('cv', resume);
 
-  const token = localStorage.getItem('authToken');
-
-  const response = await axios.post(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/candidates/profile-upload`,
+  const response = await api.post(
+    '/candidates/profile-upload',
     formData,
     {
       headers: {
         'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${token}`,
       },
     }
   );
 
-  console.log(response.data);
   return response.data;
 };
 

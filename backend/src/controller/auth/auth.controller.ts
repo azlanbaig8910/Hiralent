@@ -1,6 +1,11 @@
 import { Request, Response } from "express";
 import * as authService from "../../services/auth/auth.service";
 
+type LoginResponseWithToken = {
+  token?: string;
+  [key: string]: any;
+};
+
 export const signupController = async (req: Request, res: Response) => {
   try {
     const data = await authService.signup(req.body, req);
@@ -11,9 +16,33 @@ export const signupController = async (req: Request, res: Response) => {
   }
 };
 
+// export const loginController = async (req: Request, res: Response) => {
+//   try {
+//     const data = await authService.login(req.body, req); // req pass kar raha h
+//     res.status(200).json(data);
+//   } catch (err) {
+//     const message = err instanceof Error ? err.message : "Login failed";
+//     res.status(401).json({ error: message });
+//   }
+// };
+
 export const loginController = async (req: Request, res: Response) => {
   try {
-    const data = await authService.login(req.body, req); // req pass kar raha h
+    // const data = await authService.login(req.body, req);
+    const data = (await authService.login(req.body, req)) as LoginResponseWithToken;
+
+    // ✅ USE data.token (NOT accessToken)
+    if (data?.token) {
+      res.cookie("accessToken", data.token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        domain: process.env.NODE_ENV === "production"
+          ? process.env.COOKIE_DOMAIN
+          : undefined,
+      });
+    }
+
     res.status(200).json(data);
   } catch (err) {
     const message = err instanceof Error ? err.message : "Login failed";
