@@ -7,7 +7,7 @@ import { APIResponse } from '../profile/profile.api';
 // });
 
 export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL,
+  baseURL: "https://hiralent-production-02a3.up.railway.app/api/v1",
   withCredentials: true,
   headers: { 'Content-Type': 'application/json' },
 });
@@ -35,6 +35,17 @@ api.interceptors.request.use((config) => {
 //   return config;
 // });
 
+// export const signup = async (data: {
+//   email: string;
+//   password: string;
+//   full_name: string;
+//   role: string;
+// }) => {
+//   const response = await api.post('/auth/signup', data);
+//   console.log("📥 Signup response:", response.data);
+//   return response.data;
+// };
+
 export const signup = async (data: {
   email: string;
   password: string;
@@ -42,7 +53,14 @@ export const signup = async (data: {
   role: string;
 }) => {
   const response = await api.post('/auth/signup', data);
+
   console.log("📥 Signup response:", response.data);
+
+  // ✅ STORE TOKEN
+  if (response.data?.token) {
+    localStorage.setItem("accessToken", response.data.token);
+  }
+
   return response.data;
 };
 
@@ -51,24 +69,42 @@ export const login = async (data: {
   password: string;
 }) => {
   console.log("🔐 Attempting login for:", data.email);
+
   const response = await api.post('/auth/login', data);
+
   console.log("📥 Login response:", response.data);
-  
-  // ✅ Vérifier que le token existe
-  // if (!response.data.token) {
-  //   console.error("❌ No token in API response!");
-  //   throw new Error("No authentication token received from server");
-  // }
-  
-  // ✅ Vérifier que l'utilisateur existe
-  // if (!response.data.user) {
-  //   console.error("❌ No user in API response!");
-  //   throw new Error("No user data received from server");
-  // }
-  
-  console.log("✅ API response valid - token and user present");
+
+  // ✅ STORE TOKEN
+  if (response.data?.token) {
+    localStorage.setItem("accessToken", response.data.token);
+  }
+
   return response.data;
 };
+
+// export const login = async (data: {
+//   email: string;
+//   password: string;
+// }) => {
+//   console.log("🔐 Attempting login for:", data.email);
+//   const response = await api.post('/auth/login', data);
+//   console.log("📥 Login response:", response.data);
+  
+//   // ✅ Vérifier que le token existe
+//   // if (!response.data.token) {
+//   //   console.error("❌ No token in API response!");
+//   //   throw new Error("No authentication token received from server");
+//   // }
+  
+//   // ✅ Vérifier que l'utilisateur existe
+//   // if (!response.data.user) {
+//   //   console.error("❌ No user in API response!");
+//   //   throw new Error("No user data received from server");
+//   // }
+  
+//   console.log("✅ API response valid - token and user present");
+//   return response.data;
+// };
 
 export const updateLocation = async (data: {
   location: string;

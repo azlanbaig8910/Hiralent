@@ -22,12 +22,22 @@ export default function VerificationSection() {
       }
 
       try {
-        const response = await fetch("http://localhost:5000/api/v1/company/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
+        // const response = await fetch("http://localhost:5000/api/v1/company/profile", {
+        //   headers: {
+        //     Authorization: `Bearer ${token}`,
+        //     "Content-Type": "application/json",
+        //   },
+        // });
+
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/company/profile`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (!response.ok) {
           const err = await response.text().catch(() => "");
@@ -135,17 +145,19 @@ export default function VerificationSection() {
 
     try {
       setUploadProgress(10);
-      const runRes = await fetch("http://localhost:5000/api/v1/verification/run/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          subject_type: "COMPANY",
-          subject_id: companyId,
-        }),
-      });
+      // const runRes = await fetch("http://localhost:5000/api/v1/verification/run/create", {
+      const runRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/verification/run/create`
+        , {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            subject_type: "COMPANY",
+            subject_id: companyId,
+          }),
+        });
 
       if (!runRes.ok) {
         const txt = await runRes.text().catch(() => "");
@@ -165,11 +177,13 @@ export default function VerificationSection() {
       form.append("run_id", run_id);
       setUploadProgress(30);
 
-      const uploadRes = await fetch(`http://localhost:5000/api/v1/uploads/company/${companyId}`, {
-        method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        body: form,
-      });
+      // const uploadRes = await fetch(`http://localhost:5000/api/v1/uploads/company/${companyId}`, {
+      const uploadRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/uploads/company/${companyId}`
+        , {
+          method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
+          body: form,
+        });
 
       if (!uploadRes.ok) {
         const txt = await uploadRes.text().catch(() => "");
@@ -181,18 +195,20 @@ export default function VerificationSection() {
       console.log("Uploaded:", uploadData);
       setUploadProgress(70);
 
-      const finalizeRes = await fetch("http://localhost:5000/api/v1/verification/run/finalize", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          run_id,
-          subject_type: "COMPANY",
-          subject_id: companyId,
-        }),
-      });
+      // const finalizeRes = await fetch("http://localhost:5000/api/v1/verification/run/finalize", {
+      const finalizeRes = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/verification/run/finalize`
+        , {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            run_id,
+            subject_type: "COMPANY",
+            subject_id: companyId,
+          }),
+        });
 
       if (!finalizeRes.ok) {
         const txt = await finalizeRes.text().catch(() => "");
@@ -247,21 +263,23 @@ export default function VerificationSection() {
     );
   }
 
-  {/* Debug display */}
-  {process.env.NODE_ENV === 'development' && (
-    <div className="text-xs bg-yellow-50 p-3 rounded-lg mb-4 border border-yellow-200">
-      <p className="font-semibold text-yellow-800 mb-2">🔍 Debug Company Info:</p>
-      <div className="space-y-1">
-        <p>Company ID: <span className={companyId ? "text-green-600 font-medium" : "text-red-600 font-medium"}>"{companyId}" {!companyId && "❌ EMPTY"}</span></p>
-        <p>User ID: "{user?.user_id}"</p>
-        <p>Loading Company ID: <span className={isLoadingCompanyId ? "text-yellow-600" : "text-green-600"}>{isLoadingCompanyId ? "⏳ Yes" : "✅ No"}</span></p>
-        <p>Profile Loaded: <span className={companyProfile ? "text-green-600" : "text-red-600"}>{companyProfile ? "✅ Yes" : "❌ No"}</span></p>
-        <p>Profile company_id: "{companyProfile?.company_id}"</p>
-        <p>Has Registration: <span className={companyProfile?.registration_number ? "text-green-600" : "text-red-600"}>{companyProfile?.registration_number ? "✅ Yes" : "❌ No"}</span></p>
-        <p>Has Address: <span className={companyProfile?.full_address ? "text-green-600" : "text-red-600"}>{companyProfile?.full_address ? "✅ Yes" : "❌ No"}</span></p>
+  {/* Debug display */ }
+  {
+    process.env.NODE_ENV === 'development' && (
+      <div className="text-xs bg-yellow-50 p-3 rounded-lg mb-4 border border-yellow-200">
+        <p className="font-semibold text-yellow-800 mb-2">🔍 Debug Company Info:</p>
+        <div className="space-y-1">
+          <p>Company ID: <span className={companyId ? "text-green-600 font-medium" : "text-red-600 font-medium"}>"{companyId}" {!companyId && "❌ EMPTY"}</span></p>
+          <p>User ID: "{user?.user_id}"</p>
+          <p>Loading Company ID: <span className={isLoadingCompanyId ? "text-yellow-600" : "text-green-600"}>{isLoadingCompanyId ? "⏳ Yes" : "✅ No"}</span></p>
+          <p>Profile Loaded: <span className={companyProfile ? "text-green-600" : "text-red-600"}>{companyProfile ? "✅ Yes" : "❌ No"}</span></p>
+          <p>Profile company_id: "{companyProfile?.company_id}"</p>
+          <p>Has Registration: <span className={companyProfile?.registration_number ? "text-green-600" : "text-red-600"}>{companyProfile?.registration_number ? "✅ Yes" : "❌ No"}</span></p>
+          <p>Has Address: <span className={companyProfile?.full_address ? "text-green-600" : "text-red-600"}>{companyProfile?.full_address ? "✅ Yes" : "❌ No"}</span></p>
+        </div>
       </div>
-    </div>
-  )}
+    )
+  }
 
   // VERIFIED STATE
   if (verified || verificationStatus === "verified") {

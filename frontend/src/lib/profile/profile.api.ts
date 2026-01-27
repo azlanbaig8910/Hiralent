@@ -22,9 +22,22 @@ export interface ProfileCompletenessResponse {
 }
 
 // Simple API call for profile completeness
+// export const getProfileCompleteness = async (): Promise<ProfileCompletenessResponse> => {
+//   const response = await api.get('/candidates/completeness');
+//   return response.data;
+// };
+
 export const getProfileCompleteness = async (): Promise<ProfileCompletenessResponse> => {
-  const response = await api.get('/candidates/completeness');
-  return response.data;
+  try {
+    const response = await api.get('/candidates/completeness');
+    return response.data;
+  } catch {
+    return {
+      success: true,
+      data: { completion: 0 },
+      message: 'Profile completeness not implemented yet',
+    };
+  }
 };
 
 // ✅ NEW: Get candidate profile (same structure as login response)
@@ -38,16 +51,17 @@ export const getCandidateProfile = async (): Promise<APIResponse> => {
 export const getPublicProfile = async (candidateId: string): Promise<APIResponse> => {
   console.log('🚀 API Call - candidateId:', candidateId);
   console.log('🌐 Base URL:', process.env.NEXT_PUBLIC_BASE_URL);
-  
+
   // Create separate axios instance without auth interceptor for public calls
   const publicApi = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:5000',
+    // baseURL: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:5000',
+    baseURL: process.env.NEXT_PUBLIC_BASE_URL,
     headers: { 'Content-Type': 'application/json' },
   });
-  
+
   const url = `/candidates/public-profile/${candidateId}`;
   console.log('📡 Request URL:', `${publicApi.defaults.baseURL}${url}`);
-  
+
   try {
     const response = await publicApi.get(url);
     console.log('✅ Success:', response.data);
@@ -71,12 +85,12 @@ export interface BasicInfoData {
 }
 
 export interface SkillData {
-  skill_id?: string;       
+  skill_id?: string;
   skill_name: string;
   skill_category: 'technical' | 'soft' | 'language' | 'certification';
   proficiency: 'beginner' | 'intermediate' | 'advanced' | 'expert';
   years_experience?: number;
-  source_type?: string;   
+  source_type?: string;
   is_verified?: boolean;
 }
 
@@ -196,7 +210,7 @@ export const updateJobBenefits = async (jobBenefits: JobBenefitData[]): Promise<
 export const uploadProfilePicture = async (image: File): Promise<APIResponse> => {
   const formData = new FormData();
   formData.append('profilePicture', image);
-  
+
   const response = await api.post('/candidates/profile-picture-upload', formData, {
     headers: { 'Content-Type': 'multipart/form-data' }
   });

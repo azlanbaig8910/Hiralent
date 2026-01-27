@@ -766,6 +766,28 @@ export const signup = async (input: SignupInput, req?: any) => {
       }
     });
 
+    // ✅ AUTO-CREATE PROFILES BASED ON ROLE
+    if (user.role === "candidate") {
+      await prisma.candidateProfile.create({
+        data: {
+          candidate_id: user.user_id,
+          about_me: "",
+          location: "",
+          skills: []
+        }
+      });
+    }
+
+    if (user.role === "company" || user.role === "company_admin") {
+      await prisma.companyProfile.create({
+        data: {
+          company_id: user.user_id,
+          company_name: full_name ?? "",
+          verification_status: "pending"
+        }
+      });
+    }
+
     const sessionId = uuidv4();
 
     const companyId =
@@ -807,9 +829,8 @@ export const signup = async (input: SignupInput, req?: any) => {
         )
       }).catch(err => console.error("Welcome email failed:", err.message));
 
-      const uploadLink = `${process.env.FRONTEND_URL}${
-        process.env.FRONTEND_UPLOAD_PATH || "/company/upload"
-      }?companyId=${user.user_id}`;
+      const uploadLink = `${process.env.FRONTEND_URL}${process.env.FRONTEND_UPLOAD_PATH || "/company/upload"
+        }?companyId=${user.user_id}`;
 
       sendEmail({
         to: user.email,
