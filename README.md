@@ -46,30 +46,30 @@ The project follows **industry best practices**, clean separation of concerns, a
 
 hiralent/
 ├── backend/
-│ ├── prisma/
-│ │ ├── schema.prisma
-│ │ └── migrations/
-│ ├── src/
-│ │ ├── app.ts # Express app setup
-│ │ ├── server.ts # Server bootstrap
-│ │ ├── controllers/ # Request handlers
-│ │ ├── routes/ # API routes
-│ │ ├── services/ # Business logic
-│ │ ├── middlewares/ # Auth, guards, validation
-│ │ ├── validation/ # Zod / schema validation
-│ │ ├── types/ # Shared TypeScript types
-│ │ ├── utils/ # Helpers & utilities
-│ │ └── lib/ # DB, external services
-│ └── package.json
+│   ├── prisma/
+│   │   ├── schema.prisma
+│   │   └── migrations/
+│   ├── src/
+│   │   ├── app.ts              # Express app setup
+│   │   ├── server.ts           # Server bootstrap
+│   │   ├── controllers/        # Request handlers
+│   │   ├── routes/             # API routes
+│   │   ├── services/           # Business logic
+│   │   ├── middlewares/        # Auth, guards, validation
+│   │   ├── validation/         # Zod / schema validation
+│   │   ├── types/              # Shared TypeScript types
+│   │   ├── utils/              # Helpers & utilities
+│   │   └── lib/                # DB, external services
+│   └── package.json
 │
 ├── frontend/
-│ ├── app/ # Next.js App Router
-│ ├── components/ # Reusable UI components
-│ ├── hooks/ # Custom React hooks
-│ ├── lib/ # API clients, utils
-│ ├── public/ # Static assets
-│ ├── styles/ # Global styles
-│ └── package.json
+│   ├── app/                    # Next.js App Router
+│   ├── components/             # Reusable UI components
+│   ├── hooks/                  # Custom React hooks
+│   ├── lib/                    # API clients, utilities
+│   ├── public/                 # Static assets
+│   ├── styles/                 # Global styles
+│   └── package.json
 │
 └── README.md
 
