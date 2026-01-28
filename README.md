@@ -43,7 +43,7 @@ The project follows **industry best practices**, clean separation of concerns, a
 ---
 
 ## 📁 Project Structure
-
+```bash
 hiralent/
 ├── backend/
 │   ├── prisma/
@@ -72,6 +72,7 @@ hiralent/
 │   └── package.json
 │
 └── README.md
+```
 
 ---
 
