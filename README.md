@@ -1,7 +1,6 @@
 # Hiralent — AI-Ready Hiring & Job Listing Platform
 
-Hiralent is a modern, full-stack hiring platform designed for candidates, recruiters, and agencies.  
-It combines a **Next.js frontend** with a **TypeScript-based Express backend**, built with scalability, clean architecture, and future AI integrations in mind.
+Hiralent is a modern, full-stack hiring platform designed for candidates, recruiters, and agencies. It combines a **Next.js frontend** with a **TypeScript-based Express backend**, built with scalability, clean architecture, and future AI integrations in mind.
 
 ---
 
@@ -46,32 +45,33 @@ The project follows **industry best practices**, clean separation of concerns, a
 ## 📁 Project Structure
 
 hiralent/
-│
 ├── backend/
 │ ├── prisma/
 │ │ ├── schema.prisma
 │ │ └── migrations/
 │ ├── src/
-│ │ ├── app.ts
-│ │ ├── server.ts
-│ │ ├── controllers/
-│ │ ├── routes/
-│ │ ├── services/
-│ │ ├── middlewares/
-│ │ ├── utils/
-│ │ ├── types/
-│ │ ├── validation/
-│ │ └── lib/
+│ │ ├── app.ts # Express app setup
+│ │ ├── server.ts # Server bootstrap
+│ │ ├── controllers/ # Request handlers
+│ │ ├── routes/ # API routes
+│ │ ├── services/ # Business logic
+│ │ ├── middlewares/ # Auth, guards, validation
+│ │ ├── validation/ # Zod / schema validation
+│ │ ├── types/ # Shared TypeScript types
+│ │ ├── utils/ # Helpers & utilities
+│ │ └── lib/ # DB, external services
 │ └── package.json
 │
-└── frontend/
-├── app/
-├── components/
-├── hooks/
-├── lib/
-├── public/
-├── styles/
-└── package.json
+├── frontend/
+│ ├── app/ # Next.js App Router
+│ ├── components/ # Reusable UI components
+│ ├── hooks/ # Custom React hooks
+│ ├── lib/ # API clients, utils
+│ ├── public/ # Static assets
+│ ├── styles/ # Global styles
+│ └── package.json
+│
+└── README.md
 
 ---
 
@@ -219,7 +219,4 @@ React • Next.js • TypeScript
 
 ## 📄 License
 
-This repository is public for learning and demonstration purposes.
-
-Reuse, redistribution, or commercial use is not permitted without
-explicit permission from the author.
+This repository is public for learning and demonstration purposes. Reuse, redistribution, or commercial use is not permitted without explicit permission from the author.
