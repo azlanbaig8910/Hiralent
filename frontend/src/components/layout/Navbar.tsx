@@ -33,7 +33,7 @@ const Navbar = () => {
   // Navigation items
   const navItems = [
     { href: '/', label: 'Home', activePattern: /^\/$/ },
-    { href: '/candidate/findjob', label: 'Find job', activePattern: /^\/candidate\/findjob/ },
+    { href: '/job/jobsearch', label: 'Find job', activePattern: /^\/job/ },
     { href: '/company/discover', label: 'Companies', activePattern: /^\/company/ },
     { href: '/auth/signup', label: 'Create CV', activePattern: /^\/auth\/signup/ },
   ];
